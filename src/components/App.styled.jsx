@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const StyledApp = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+  grid-gap: 15px;
+  padding-bottom: 15px;
 `;

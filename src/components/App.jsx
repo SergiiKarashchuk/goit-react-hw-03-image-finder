@@ -59,6 +59,17 @@ class App extends Component {
   };
 
   handleSearch = value => {
+    this.setState({
+      query: value,
+      images: [],
+      page: 1,
+      notification: {
+        type: '',
+        message: '',
+      },
+      status: 'idle',
+    });
+
     if (!value) {
       this.setState({
         notification: {
@@ -79,17 +90,6 @@ class App extends Component {
       });
       return;
     }
-
-    this.setState({
-      query: value,
-      images: [],
-      page: 1,
-      notification: {
-        type: '',
-        message: '',
-      },
-      status: 'idle',
-    });
   };
 
   addImages = async () => {
@@ -121,7 +121,7 @@ class App extends Component {
       if (
         totalImages > 0 &&
         page !== 1 &&
-        totalImages <= this.state.images.length + 12
+        totalImages <= this.state.images.length + 1
       ) {
         this.setState({
           notification: {
