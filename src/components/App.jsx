@@ -59,16 +59,16 @@ class App extends Component {
   };
 
   handleSearch = value => {
-    this.setState({
-      query: value,
-      images: [],
-      page: 1,
-      notification: {
-        type: '',
-        message: '',
-      },
-      status: 'idle',
-    });
+    if (value === this.state.query) {
+      this.setState({
+        notification: {
+          type: 'info',
+          message:
+            'You are seeing the images by this query. If you wont change your query.',
+        },
+      });
+      return;
+    }
 
     if (!value) {
       this.setState({
@@ -80,16 +80,16 @@ class App extends Component {
       return;
     }
 
-    if (value === this.state.query) {
-      this.setState({
-        notification: {
-          type: 'info',
-          message:
-            'You are seeing the images by this query. If you wont change your query.',
-        },
-      });
-      return;
-    }
+    this.setState({
+      query: value,
+      images: [],
+      page: 1,
+      notification: {
+        type: '',
+        message: '',
+      },
+      status: 'idle',
+    });
   };
 
   addImages = async () => {
@@ -121,7 +121,7 @@ class App extends Component {
       if (
         totalImages > 0 &&
         page !== 1 &&
-        totalImages <= this.state.images.length + 1
+        totalImages <= this.state.images.length + 12
       ) {
         this.setState({
           notification: {
